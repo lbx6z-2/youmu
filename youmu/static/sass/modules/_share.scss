@@ -1,0 +1,33 @@
+.share {
+    ul, ul li {
+        display: inline-block;
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    .share-type {
+        font-size: 0;
+
+        &:before {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 22px;
+            font-family: "FontAwesome";
+        }
+    }
+
+    .renren:before {
+        content: "\f18b";
+    }
+
+    .sina-weibo:before {
+        content: "\f18a";
+    }
+
+    .weixin:before {
+        content: "\f1d7";
+    }
+}
+

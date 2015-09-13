@@ -1,0 +1,20 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+	<head>
+		<title>个人中心</title>
+        {% include 'partials/head.html' %}
+	</head>
+	<body>
+        <div class="main">
+        {% include 'partials/topbar.html' %}
+        </div>
+        <div class="content">
+            <div class="main">
+				<h2 class="main-subheader">个人中心</h2>
+            {% include 'user/partials/tabs.html' %}
+            </div>
+        </div>
+		{% include 'partials/foot.html' %}
+		<script src="/static/js/foundation/foundation.magellan.js"></script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+.toggle {
+    font-size: 0px;
+    background-color: transparent;
+    transition: 0.2s ease all;
+    padding: 0;
+    border-bottom: none;
+    box-shadow: none;
+
+    color: #334;
+
+    &:hover, &:active, &:focus {
+        background-color: transparent;
+        color: $toggle-button-highlight-color;
+        border-bottom: none;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &:before {
+        font-family: FontAwesome;
+        font-size: 40px;
+        display: inline-block;
+    }
+}
+
+.toggle-on:before {
+    content: "\f205";
+    color: $toggle-button-highlight-color;
+}
+
+.toggle-off:before {
+    content: "\f205";
+    transform: rotate(180deg);
+}

@@ -1,0 +1,8 @@
+a {
+    color: $blue;
+    transition: all 0.2s ease;
+
+    &:hover, &:active, &:focus {
+        color: $dark_blue;
+    }
+}

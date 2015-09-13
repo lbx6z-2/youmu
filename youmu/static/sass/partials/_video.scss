@@ -1,0 +1,212 @@
+.video-main-container, .video-player-container {
+    @include span-columns(12);
+}
+
+.video-info {
+    @include span-columns(12);
+}
+
+.video-stats {
+    .label {
+        display: none;
+    }
+
+    .video-stat {
+        display: block;
+        width: 100%;
+        font-size: ms(1);
+        padding: 30px;
+
+        &:before {
+            font-family: FontAwesome;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        transition: 0.2s all ease;
+    }
+
+    .likes-count {
+        background-color: $green;
+        color: darken($green, 30);
+
+        &:before {
+            content: "\f087";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: darken($green, 20);
+            color: #FFE;
+        }
+    }
+
+    .has-liked {
+        background-color: darken($green, 20);
+        color: #FFE;
+
+        &:before {
+            content: "\f164";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: $green;
+            color: darken($green, 30);
+        }
+    }
+
+    .views-count {
+        background-color: $red;
+        color: darken($red, 30);
+        
+        &:before {
+            content: "\f06e";
+        }
+    }
+
+    .comments-count {
+        background-color: $blue;
+        color: darken($blue, 25);
+        
+        &:before {
+            content: "\f0e5";
+        }
+
+        &:hover, &:active, &:focus {
+            background-color: darken($blue, 20);
+            color: #FFE;
+        }
+    }
+}
+
+.video-main-container {
+    margin-top: 50px;
+}
+
+/* Fluid video iframes by Thierry Koblentz via A List Apart. */
+#playbox {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    background-color: black;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+}
+
+.avatar {
+    border: 3px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.video-meta {
+    padding: $gutter * 2;
+    background-color: $content-background-color;
+
+    .avatar {
+        height: 80px;
+    }
+}
+
+.video-header {
+    display: table;
+    width: 100%;
+
+    .video-avatar, .byline {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .video-avatar {
+        width: 100px;
+        padding-right: $gutter;
+    }
+}
+
+.username, .time {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.username {
+    padding-left: 5px;
+}
+
+.time {
+    margin-left: $gutter;
+    color: #77777F;
+    font-size: 12px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: ms(2);
+    margin: 0 0 10px 0;
+}
+
+.username, .description {
+    color: $main-text-color;
+}
+
+.description {
+    margin-top: 30px;
+}
+
+.vjs-poster {
+    background-color: black;    // To hide video if image is too small
+}
+
+.video .share {
+    width: 70px;
+    display: table-cell;
+    vertical-align: top;
+    background-color: $yellow;
+    text-align: center;
+
+    ul, ul li {
+        display: block;
+    }
+
+    .label {
+        color: darken($yellow, 20);
+        background-color: transparent;
+        font-size: 0;
+        margin: 40px 0 10px;
+
+        &:before {
+            display: block;
+            font-size: 22px;
+            font-family: "FontAwesome";
+            content: "\f1e0";
+            opacity: 0.8;
+        }
+    }
+
+    a {
+        color: white;
+    }
+
+    li {
+        padding: 10px 0;
+        height: 50px;
+    }
+
+    .share-type {
+        font-size: 0px;
+        &:before {
+            display: block;
+            margin-right: 0px;
+        }
+
+        &:hover, &:active {
+            color: darken($yellow, 30);
+        }
+    }
+}

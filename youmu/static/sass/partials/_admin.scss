@@ -1,0 +1,218 @@
+.admin-sections {
+    @include span-columns(12);
+    padding: 0 $gutter * 2;
+}
+
+.admin-section {
+    margin-bottom: $gutter * 2;
+}
+
+.admin-profile, .admin-videos, .admin-users {
+    @include span-columns(12);
+}
+
+.profile-avatar .avatar {
+    height: 100px;
+}
+
+label {
+    cursor: default;
+}
+
+.profile-form {
+    @include span-columns(6);
+
+    .fields-area, .submit-button-area, .username-fieldset, .avatar-area {
+        @include span-columns(6 of 6);
+    }
+
+    .avatar-area {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+
+        .current-avatar-display, .avatar-upload-fieldset {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .current-avatar-display {
+            width: 150px;
+            padding-left: $gutter / 2;
+        }
+    }
+}
+
+.submit-button-area {
+    margin-top: $gutter;
+}
+
+// Videos section
+
+.admin-videos {
+    .video-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .video-cover, .video-title, .video-info {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .video-cover {
+        img {
+            width: 70px;
+        }
+    }
+
+    .video-title {
+
+        a {
+            text-shadow: none;
+        }
+    }
+
+    .video-stats {
+        padding-bottom: 1em;
+    }
+
+    .video-upload-time {
+        margin-left: 0;
+        font-weight: normal;
+
+        &:before {
+            content: "\f073";
+        }
+    }
+
+    .video-owner-name:before {
+        content: "\f007";
+    }
+
+    .video-control-area, .video-stat {
+        font-size: 12px;
+        background-color: transparent;
+        color: $main-text-color;
+    }
+
+    .video-stat {
+        display: inline-block;
+        padding: 0;
+        width: auto;
+        margin-right: 1em;
+    }
+
+    .likes-count:hover {
+        background-color: transparent;
+        color: $main-text-color;
+    }
+
+    .comments-count {
+        &:hover, &:active, &:focus {
+            background-color: transparent;
+            color: $main-text-color;
+        }
+    }
+
+    .video-disable-area label:before {
+        content: "\f070";
+    }
+
+    .video-ban-area label:before {
+        content: "\f05e";
+    }
+}
+
+.admin-videos .video-list-item, .user-list-item {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    padding: 2em 0;
+
+    border-bottom: 1px solid rgba(#CCD, 0.8);
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.admin-videos .video-control-area, .admin-users .user-control-area {
+    display: table;
+    margin-bottom: 0.5em;
+
+    label, button {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    button {
+        margin: 0;
+    }
+
+    label {
+        display: inline-block;
+        padding-right: 1em;
+    }
+
+    label:before, .video-ban-notify-area:before {
+        font-family: "FontAwesome";
+        opacity: 0.8;
+        margin-right: 10px;
+        width: 1em;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .video-ban-notify-area:before {
+        content: "\f05e";
+    }
+
+    .toggle:before {
+        font-size: 20px;
+    }
+}
+
+.admin-videos .video-cover, .admin-users .user-avatar {
+    width: 100px;
+    text-align: center;
+}
+
+.admin-videos .video-title, .admin-users .user-id {
+    width: 35%;
+    padding: 0 2em;
+}
+
+// Users section
+
+.users-list {
+    margin: 0;
+    li {
+        list-style-type: none;
+    }
+}
+
+.user-list-item {
+    .user-avatar, .user-id, .user-controls {
+        display: table-cell;
+    }
+
+    .user-avatar {
+        img {
+            width: 40px;
+        }
+    }
+
+    .user-id {
+        color: $main-text-color;
+    }
+
+    .user-disable-area label:before {
+        content: "\f05e";
+    }
+
+    .user-make-admin-area label:before {
+        content: "\f0e7";
+    }
+}
+

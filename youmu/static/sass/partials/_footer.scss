@@ -1,0 +1,27 @@
+footer {
+    margin: 0;
+    padding: 50px;
+
+    background-image: linear-gradient(135deg, $dark_blue 0%, $blue 100%);
+
+    .footer-wrap {
+        @include outer-container();
+    }
+
+    .logo, .copyright {
+        @include span-columns(12);
+        text-align: center;
+    }
+
+    .copyright {
+        color: white;
+        margin-top: 20px;
+        font-family: $sans-serif-stack;
+        letter-spacing: 0.2em;
+    }
+
+    .logo img {
+        max-height: 70px;
+    }
+}
+

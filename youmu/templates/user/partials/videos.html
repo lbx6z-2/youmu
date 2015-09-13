@@ -1,0 +1,97 @@
+<!-- <div class="videos-list-length">共上传{{videos.length}}个视频</div> -->
+<a href="#" data-reveal-id="uploadVideoModal" class="button" ng-click="getCategory()">上传新作品</a>
+<ul class="video-list">
+    <li class="video-list-item" ng-repeat="video in videos | orderBy: 'video_id'">
+        <div class="video-cover">
+            <a href="{{video.videoUrl}}" target="_blank"><img ng-src="{{video.cover}}"></a>
+        </div>
+        <div class="title video-title">
+            <a href="{{video.videoUrl}}" target="_blank">{{video.title}}</a>
+        </div>
+        <div class="video-info">
+            <div class="video-stats">
+                <div class="video-stat time video-upload-time">{{video.upload_time}}</div>
+                <div class="video-stat video-owner-name" ng-show="isAdmin">{{video.owner_id}} ({{video.owner_name}})</div>
+                <div class="video-stat views-count">{{video.play_count}}</div>
+                <div class="video-stat likes-count">{{video.like}}</div>
+                <!-- <div class="video-stat comments-count">{{video.commentsLen}}</div> -->
+            </div>
+            <!-- <div class="video-tags"> -->
+            <!--     <div class="label">标签</div> -->
+            <!--     <ul class="video-tags-list"> -->
+            <!--         <li class="tag"> -->
+            <!--             音乐 -->
+            <!--             <a class="button remove-tag-button">移除</a> -->
+            <!--         </li> -->
+            <!--         <li class="tag"> -->
+            <!--             MV -->
+            <!--             <a class="button remove-tag-button">移除</a> -->
+            <!--         </li> -->
+            <!--     </ul> -->
+            <!--     <a class="button add-tag-button">添加</a> -->
+            <!-- </div> -->
+            <div class="video-controls">
+                <div class="video-control-area video-disable-area" ng-show="video.owner_id == user_id">
+                    <label for="video-disable-{{video.video_id}}">保密</label>
+                    <button class="toggle" name="video-disable-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.disabled]" ng-click="ToggleVideoEnableDisable(video.video_id);">toggle enable/disable</button>
+                </div>
+                <div class="video-control-area video-ban-area" ng-show="isAdmin">
+                    <label for="video-ban-{{video.video_id}}">屏蔽</label>
+                    <button class="toggle" name="video-ban-{{video.video_id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[video.banned]" ng-click="ToggleVideoBanUnban(video.video_id);">toggle ban/unban</button>
+                </div>
+                <div class="video-control-area video-ban-notify-area" ng-show="!isAdmin && video.banned">
+                    此资源已被管理员屏蔽。
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<div id="uploadVideoModal" class="reveal-modal" data-reveal>
+	<form class="custom" id="uploadVideoForm" data-abide="ajax">
+		<!--<form action="/api/video/upload" method="post" enctype="multipart/form-data">-->
+		<fieldset>
+            <div class="title-field"> 
+				<label>作品标题 <small>必填</small>
+					<input type="text" name="title" value="我的视频" required />
+				</label>
+				<small class="error">标题不能为空</small> 
+			</div>
+            <div class="description-field"> 
+				<label>作品描述 
+					<input type="text" name="description" value="无" />
+				</label>
+			</div>
+            <div class="cover-field"> 
+				<label>作品封面 
+					<input type="file" name="cover" />
+				</label>
+			</div>
+            <div class="video-field"> 
+				<input type="checkbox" name="live" ng-model="live" />
+				<label>直播</label>
+				<div ng-show="!live">
+					<label>音视频文件 <small>必填</small>
+						<input type="file" name="video" ng-required="!live" />
+					</label>
+					<small class="error">音视频文件不能为空</small> 
+				</div>
+				<div ng-show="live">
+					<label>RTMP地址
+						<input type="text" name="rtmp" placeholder="不填则为默认地址"/>
+					</label>
+				</div>
+			</div>
+            <div class="category-field">
+                <label>作品类别</label>
+				<select name="category">
+					<option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+				</select>
+                <!--<div ng-repeat="category in categories">-->
+                <!--<label><input type="radio" name="category" value="{{category}}" />{{category}}</label>-->
+                <!--</div>-->
+            </div>
+            <button type="submit" id="uploadVideoButton">上传作品</button>
+		</fieldset>
+	</form>
+</div>

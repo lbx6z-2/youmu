@@ -1,0 +1,18 @@
+<div>共有{{users.length}}个用户</div>
+
+<ul class="users-list">
+    <li class="user-list-item" ng-repeat="user in users | orderBy: 'id'">
+        <div class="user-avatar"><img class="avatar" src="{{user.avatar}}" /></div>
+        <div class="user-id">{{user.id}} ({{user.name}})</div>
+        <div class="user-controls">
+            <div class="user-control-area user-disable-area">
+                <label for="user-disable-{{user.id}}">屏蔽</label>
+                <button class="toggle" name="user-disable-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.disabled]" ng-click="ToggleUserEnableDisable(user.id);">toggle enable/disable</button>
+            </div>
+            <div class="user-control-area user-make-admin-area">
+                <label for="user-make-admin-{{user.id}}">设管理员</label>
+                <button class="toggle" name="user-make-admin-{{user.id}}" ng-class="{true: 'toggle-on', false: 'toggle-off'}[user.admin]" ng-click="ToggleUserIsAdmin(user.id);">toggle enable/disable</button>
+            </div>
+        </div>
+    </li>
+</ul>

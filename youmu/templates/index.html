@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+    <head>
+        <title>视频点播页</title>
+        {% include 'partials/head.html' %}
+	</head>
+    <body class="index" data-stellar-background-ratio="0.5">
+        <header>
+            <div class="masthead">
+                <img class="logo" src="/static/img/youmu-circle.png">
+            </div>
+            {% include 'partials/topbar.html' %}
+        </header>
+
+        <div class="content">
+            <div class="main" ng-controller="videoStoreCtrl">
+                <input type="hidden" value="{{ query }}" id="query_str">
+                <div class="main-subheader video-list-length">
+                    找到{{videos.length}}个视频
+                </div>
+
+                <div class="video-list">
+                    <div class="video-list-item" ng-class="{first: $index==0, second:$index==1, third: $index==2}" ng-repeat="video in videos">
+                        <a class="video-link" href="{{video.videoUrl}}" target="_blank">
+                            <img class="video-thumbnail" src="{{video.cover}}" />
+
+                            <div class="video-data-container-area">
+                                <div class="video-data-area">
+                                    <h5 class="video-title">{{video.title}}</h5>
+                                    <div class="video-details">
+                                        <div class="video-uploader">{{video.owner_name}}</div>
+                                        <div class="video-play-count">{{video.play_count}}</div>
+                                        <div class="video-likes-count">{{video.like}}</div>
+                                        <div ng-class="'video-media-type-' + video.media_type"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+    {% include 'partials/foot.html' %}
+    <script src="/static/js/index.js"></script>
+</html>

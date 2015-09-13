@@ -1,0 +1,24 @@
+<link href="/static/video-js/video-js.css" rel="stylesheet">
+<script src="/static/video-js/video.js"></script>
+<script src="/static/js/CommentCoreLibrary/CommentCoreLibrary.js"></script>
+<script src="/static/js/CommentCoreLibrary/BilibiliFormat.js"></script>
+<link href="/static/css/videojs_ABdm.css" rel="stylesheet">
+<script src="/static/js/videojs_ABdm.js"></script>
+<script src="/static/js/vendor/jquery.js"></script>
+<link href="/static/fonts/foundation-icons.css" rel="stylesheet">
+<script>
+$(document).ready(function(){
+	window.thevideojs = videojs("video-block");
+	thevideojs.ABP();
+	thevideojs.danmu.load("/static/comment.xml");
+});
+</script>
+<video id="video-block" class="video-js vjs-default-skin" controls
+ preload="auto" width="640" height="264" poster="/static/img/youmu-seal.jpg"
+ data-setup="">
+	<source src="http://localhost:8888/1" type="video/mp4" />
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser
+    that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>

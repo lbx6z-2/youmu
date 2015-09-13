@@ -1,0 +1,8 @@
+.alert-box.alert {
+    background-color: $red;
+    border-color: darken($red, 10);
+}
+
+.error small.error {
+    background-color: $red;
+}

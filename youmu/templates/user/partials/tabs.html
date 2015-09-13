@@ -1,0 +1,21 @@
+<div class="admin-sections" ng-controller="personalCenterCtrl">
+	<!--<div data-magellan-expedition="fixed">
+		<dl class="sub-nav">
+			<dd data-magellan-arrival="profile"><a href="#profile">个人资料</a></dd>
+			<dd data-magellan-arrival="videos"><a href="#videos">视频管理</a></dd>
+			<dd data-magellan-arrival="users" ng-show="isAdmin"><a href="#users">用户管理</a></dd>
+		</dl>
+		</div>-->
+    <div class="admin-section admin-profile">
+        <h3 data-magellan-destination="profile">个人资料</h3>
+        {% include 'user/partials/profile.html' %}
+    </div>
+    <div class="admin-section admin-videos">
+        <h3 data-magellan-destination="videos">资源管理</h3>
+        {% include 'user/partials/videos.html' %}
+    </div>
+    <div class="admin-section admin-users" ng-show="isAdmin">
+        <h3 data-magellan-destination="users">用户管理</h3>
+        {% include 'user/partials/users.html' %}
+    </div>
+</div>

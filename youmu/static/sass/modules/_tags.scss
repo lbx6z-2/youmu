@@ -1,0 +1,58 @@
+.video-tags {
+    margin-bottom: 0.5em;
+    .button {
+        padding: 0;
+        margin: 0;
+    }
+
+    .label {
+        background-color: transparent;
+        padding: 0 1em 0 0;
+
+        font-size: 12px;
+        color: #4d4d4d;
+
+        &:before {
+            content: "\f02c";
+            font-family: "FontAwesome";
+            opacity: 0.8;
+            width: 1em;
+            margin-right: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+}
+
+.video-tags-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: inline-block;
+
+    li {
+        display: inline-block;
+        font-size: 12px;
+
+        margin-right: 1em;
+        padding: 5px 10px;
+        // background-color: $main-text-color;
+        border: 1px solid $main-text-color;
+        border-radius: 5px;
+    }
+}
+
+.remove-tag-button {
+    font-size: 0;
+    background-color: transparent;
+
+    &:hover, &:active, &:focus {
+        background-color: transparent;
+    }
+
+    &:before {
+        font-size: 12px;
+        content: "x";
+    }
+}

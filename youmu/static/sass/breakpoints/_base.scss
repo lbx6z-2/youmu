@@ -1,0 +1,89 @@
+html {
+    font-family: $sans-serif-stack;
+}
+
+.video-list-item {
+    margin-bottom: 20px;
+    position: relative;
+
+    .video-link:hover {
+        .video-thumbnail {
+            transform: scale(1.5);
+        }
+    }
+
+    .video-link {
+        display: block;
+        width: 100%;
+        position: relative;
+        height: 0;
+        padding: 56.25% 0 0 0;
+        overflow: hidden;
+        transition: all 0.2s ease;
+
+        outline: solid 0px $yellow;
+
+        &:hover {
+            outline: solid 10px $yellow;
+        }
+
+        &:active {
+            outline: solid 6px darken($yellow, 10);
+        }
+    }
+
+    .video-thumbnail {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+
+        transition: all 0.2s ease;
+
+        background-color: black;    // Overridden by image
+    }
+
+    .video-data-container-area {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        overflow: hidden;
+        background-image: linear-gradient(rgba(black, 0), rgba(black, 0.5) 50%);
+    }
+
+    .video-data-area {
+        padding: $gutter / 2;
+    }
+
+    .video-title, .video-details {
+        color: white;
+        text-shadow: 0 0 3px #444;
+    }
+
+    .video-title {
+        font-size: ms(0);
+        font-weight: bold;
+    }
+
+    .video-details {
+        letter-spacing: 0.05em;
+        font-size: 12px;
+
+        div {
+            display: inline-block;
+        }
+    }
+}
+
+.video-list {
+    @include span-columns(12);
+    margin-right: 0;
+    padding: 0 20px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="youmuApp">
+    <head lang="en">
+        <title>视频点播页</title>
+        {% include 'partials/head.html' %}
+        <link href="/static/video-js/video-js.css" rel="stylesheet">
+        <script src="/static/video-js/video.js"></script>
+        <script src="/static/js/CommentCoreLibrary/CommentCoreLibrary.js"></script>
+        <script src="/static/js/CommentCoreLibrary/BilibiliFormat.js"></script>
+        <link href="/static/css/videojs_ABdm.css" rel="stylesheet">
+        <script src="/static/js/videojs_ABdm.js"></script>
+        <script src="/static/js/vendor/jquery.js"></script>
+        <link href="/static/fonts/foundation-icons.css" rel="stylesheet">
+		<script>
+			$(document).ready(function(){
+				window.thevideojs = videojs("playbox");
+			});
+		</script>
+    </head>
+    <body class="video">
+        <div class="main">
+            {% include 'partials/topbar.html' %}
+            <div class="video-main-container" ng-controller="liveVideoCtrl">
+                <div class="video-player-container">
+                    <h1>视频直播</h1>
+                    <video id="playbox" class="video-js vjs-default-skin" controls preload="auto" poster="" data-setup="{}" width="100%">
+                        <source src="rtmp://166.111.17.5/live/testlive" type="rtmp/mp4" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser
+                            that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                </div>
+            </div>
+        </div>
+    </body>
+    {% include 'partials/foot.html' %}
+</html>

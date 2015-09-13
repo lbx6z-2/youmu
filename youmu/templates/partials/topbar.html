@@ -1,0 +1,85 @@
+<nav class="navbar" ng-controller="topBarCtrl">
+    <div class="logo">
+        <a href="/">
+            <img src="/static/img/youmu-seal.png">
+        </a>
+    </div>
+
+    <div class="search-area">
+		<form id="searchForm" class="custom" data-abide="ajax">
+			<a id="search_drop_btn" href="#" data-dropdown="search_drop" aria-controls="search_drop" aria-expanded="false" class="button dropdown">&nbsp;&nbsp;</a>
+			<ul id="search_drop" data-dropdown-content class="f-dropdown" aria-hidden="true" aria-autoclose="true" tabindex="-1">
+				<li onclick="setQueryCursor('owner');"><a href="javascript:;">指定用户名</a></li>
+				<li onclick="setQueryCursor('category');"><a href="javascript:;">指定分类</a></li>
+			</ul>
+			<input type="text" ng-model="query" value="" id="query" placeholder="懂你的搜索">
+			<a class="button search-button" ng-click="search()">
+				<span class="label">搜索</span>
+			</a>
+		</form>
+    </div>
+
+    <div class="login-logout-area">
+        <div class="login" ng-hide="isLogin"> <!-- 登录后，隐藏 -->
+            <a href="#" class="button login-button" data-reveal-id="loginModal"><div class="label">登录</div></a>
+        </div>
+
+        <div class="logout" ng-show="isLogin"> <!-- 登录后，出现 -->
+            <span class="navbar-avatar">
+                <a href="/user/"><img class="avatar" ng-src="{{avatar}}"/></a>
+            </span>
+            <a class="user" href="/user/">{{username}}</a>    <!--需要在登录时指定-->
+            <a href="#" class="button logout-button" ng-click="logout();"><div class="label">登出</div></a>
+        </div>
+    </div>
+
+</nav>
+
+<!-- 登录表单 -->
+<div id="loginModal" class="reveal-modal" data-reveal>
+    <h2>登录</h2>
+    <form class="custom" id="loginForm" data-abide="ajax">
+        <fieldset id="loginFormFieldset">
+            <div class="id-field"> 
+                <label>用户名/邮箱 <small>必填</small> 
+                    <input type="text" id="user_id" placeholder="网络学堂用户名或学号" required pattern="loginID" /> 
+                </label>
+                <small class="error">学号格式错误</small> 
+            </div> 
+            <div class="password-field"> 
+                <label>密码 <small>必填</small> 
+                    <input type="password" id="password" placeholder="网络学堂账户密码" required /> 
+                </label>
+                <small class="error">密码不能为空</small> 
+            </div> 
+            <button type="submit" id="loginButton">登录</button>
+        </fieldset>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="alertModal" class="reveal-modal" data-reveal>
+    <center>
+        <h3 id="alertInfo" style="color:red;font-weight:bold;"></h3>
+    </center>
+</div>
+
+
+<script>
+function setQueryCursor(prefix) { 
+    ctrl = document.getElementById("query");
+    ctrl.value = prefix + ": " + ctrl.value;
+    pos = prefix.length + 1;
+    if(ctrl.setSelectionRange){ 
+        ctrl.setSelectionRange(pos, pos);
+        ctrl.focus();
+    }
+    else if (ctrl.createTextRange) { 
+        var range = ctrl.createTextRange(); 
+        range.collapse(true); 
+        range.moveEnd('character', pos); 
+        range.moveStart('character', pos); 
+        range.select(); 
+    } 
+};
+</script>

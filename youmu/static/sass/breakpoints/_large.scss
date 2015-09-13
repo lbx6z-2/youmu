@@ -1,0 +1,10 @@
+.navbar {
+    .search-area input {
+        width: 75%;
+    }
+}
+
+.comments-list, .comment-form {
+    @include span-columns(6);
+    @include shift(3);
+}

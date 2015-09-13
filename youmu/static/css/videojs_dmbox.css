@@ -1,0 +1,25 @@
+.video-js .vjs-dmbox {
+	position: absolute;
+	top: 80%;
+	left: 70%;
+	right: 0%;
+}
+
+.video-js .vjs-dmbox input {
+	border-radius: 5px;
+}
+
+.video-js .vjs-dmbox-control {
+	width: 20px;
+	cursor: pointer;
+	float: right;
+	font-size: 16px;
+	text-align:right;
+	margin-top: 4px;
+}
+
+.video-js .vjs-dmbox .vjs-closeDMBox {
+	font-size: 12px;
+	cursor: pointer;
+}
+

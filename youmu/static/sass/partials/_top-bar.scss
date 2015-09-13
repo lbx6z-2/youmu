@@ -1,0 +1,99 @@
+.navbar {
+    @include span-columns(12);
+    z-index: 9999;
+
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    background-color: $navbar-background-color;
+
+    transition: all 0.3s ease;
+
+    padding: 20px;
+
+    .logo, .search-area, .login-logout-area {
+        display: table-cell;
+    }
+
+    .logo {
+        img {
+            height: 49px;
+        }
+        width: 75px;
+    }
+
+    input, .button {
+        margin: 0;
+    }
+
+    .login {
+        margin-right: 0;
+    }
+
+    .label {
+        font-size: 0;
+        padding: 0;
+        background: none;
+        &:before {
+            visibility: visible;
+            font-family: "FontAwesome";
+            font-size: 18px;
+        }
+    }
+
+    .button {
+        padding-left:  18px;
+        padding-right: 18px;
+    }
+
+    .search-area {
+        width: 50%;
+        input, a {
+            display: inline-block;
+        }
+
+        input {
+            width: 50%;
+            height: 49px;
+        }
+
+    }
+
+    .login-logout-area {
+        text-align: right;
+        width: 50%;
+    }
+
+    .user {
+        margin: 0 $gutter 0 $gutter / 2;
+    }
+
+    .search-button .label:before {
+        content: "\f002";
+    }
+
+    .login-button .label:before {
+        content: "\f090";
+    }
+
+    .logout-button .label:before {
+        content: "\f08b";
+    }
+
+    .navbar-avatar .avatar {
+        height: 49px;
+    }
+}
+
+.navbar-fixed {
+    position: fixed;
+    @include outer-container();
+    z-index: 100;
+    background-color: rgba(white, 0.98);
+    box-shadow: 0 0 20px #99A;
+
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}

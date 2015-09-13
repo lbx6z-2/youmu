@@ -1,0 +1,26 @@
+<footer ng-controller="videoStoreCtrl">
+    <div class="footer-wrap">
+        <div class="logo">
+            <a href="/">
+                <img src="/static/img/youmu-seal-transparent.png">
+            </a>
+        </div>
+        <div class="copyright">软工Proj2 - 三比二小组 2014</div>
+    </div>
+</footer>
+
+<script src="/static/js/foundation.min.js"></script>
+<script src="/static/js/foundation/foundation.abide.js"></script>
+<script>
+$(document).foundation({
+	abide : {
+		live_validate : true,
+		focus_on_invalid : true,
+		error_labels: true,
+		timeout : 1000,
+		patterns : {
+			loginID: /^[a-zA-Z]+[-_]*[a-zA-Z]*[0-9]+$/
+		}
+	}
+});
+</script>

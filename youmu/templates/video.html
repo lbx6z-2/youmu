@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<html class="no-js" lang="en" ng-app="youmuApp">
+	<head lang="en">
+		<title>视频点播页</title>
+		{% include 'partials/head.html' %}
+		<link href="/static/video-js/video-js.css" rel="stylesheet">
+		<script src="/static/video-js/video.js"></script>
+		<script src="/static/js/CommentCoreLibrary/CommentCoreLibrary.js"></script>
+		<script src="/static/js/CommentCoreLibrary/BilibiliFormat.js"></script>
+		<link href="/static/css/videojs_ABdm.css" rel="stylesheet">
+		<script src="/static/js/videojs_ABdm.js"></script>
+		<link href="/static/css/videojs_dmbox.css" rel="stylesheet">
+		<script src="/static/js/videojs_dmbox.js"></script>
+		<script src="/static/js/vendor/jquery.js"></script>
+		<link href="/static/fonts/foundation-icons.css" rel="stylesheet">
+	</head>
+	<body class="video" ng-controller="videoDataCtrl">
+		<div class="main">
+			{% include 'partials/topbar.html' %}
+			<div class="video-main-container">
+				<div class="video-player-container">
+					<input type="hidden" value="{{ video_id }}" id="video_id"/>
+					<input type="hidden" value="{{video.media_type}}" id="media_type"/>
+					<input type="hidden" value="{{video.url}}" id="media_url"/>
+				</div>
+				<div class="video-info">
+					<div class="video-meta">
+						<div class="video-header">
+							<div class="video-avatar">
+								<img class="avatar" ng-src="{{video.owner_avatar}}" />
+							</div>
+							<div class="byline">
+								<h1 class="title">{{video.title}}
+									<span class="round label" style="font-size:16px">{{video.media_type == "video" ? "视频" : (video.media_type == "audio" ? "音频" : "直播")}}</span>
+								</h1>
+								<div class="username">{{video.owner_name}}</div>
+								<div class="time">{{video.upload_time | date}}</div>
+							</div>
+						</div>
+						<div class="description">{{video.description}}</div>
+					</div>
+
+                    <div class="share">
+                        <div class="label">分享到</div>
+                        <ul>
+                            <script type="text/javascript" src="/static/js/rrshare.js"></script>
+                            <script type="text/javascript">
+                                function rrShareClick() {
+                                    var rrShareParam = {
+                                        resourceUrl : '',	//分享的资源Url
+                                        srcUrl : '',	//分享的资源来源Url,默认为header中的Referer,如果分享失败可以调整此值为resourceUrl试试
+                                        pic : "http://" + document.location.host + $("video").attr('poster'),		//分享的主题图片Url
+                                        title : $(".video-info .title").html(),		//分享的标题
+                                        description : $(".video-info .description").html()	//分享的详细描述
+                                    };
+                                    rrShareOnclick(rrShareParam);
+                                }
+                            </script>
+                            <li><a href="javascript:;" class="share-type renren" onclick="rrShareClick()">人人</a></li>
+                            <li><a class="share-type sina-weibo" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://'+document.location.host+$('video').attr('poster'),$('.video-info .title').html()+'  '+$('.video-info .description').html(),document.location.href,'utf-8'));">新浪微博</a> </li>
+                            <script type="text/javascript" src="/static/js/WeixinApi.js"></script>
+                            <script type="text/javascript">
+                                function WeiXinShare() {
+                                    if (typeof WeixinJSBridge == "undefined") {
+                                        alertInfo("请使用微信客户端分享");
+                                    } else {
+                                        WeixinJSBridge.invoke('shareTimeline', {
+                                            "title": $(".video-info .title").html(),
+                                            "link": window.location.href,
+                                            "desc": $(".video-info .description").html(),
+                                            "img_url": "http://" + document.location.host + $("video").attr("poster")
+                                        });
+                                    }
+                                }
+                                WeixinApi.ready(function(Api) {
+                                    // 微信分享的数据
+                                    var wxData = {
+                                        "appId": "", // 服务号可以填写appId
+                                        "title": $(".video-info .title").html(),
+                                        "link": window.location.href,
+                                        "desc": $(".video-info .description").html(),
+                                        "imgUrl": "http://" + document.location.host + $("video").attr("poster")
+                                    };
+                                    // 分享的回调
+                                    var wxCallbacks = function(){}/*{
+                                        // 收藏操作不执行回调，默认是开启(true)的
+                                        favorite : false,
+
+                                        // 分享操作开始之前
+                                        ready : function() {
+                                            // 你可以在这里对分享的数据进行重组
+                                            alert("准备分享");
+                                        },
+                                        // 分享被用户自动取消
+                                        cancel : function(resp) {
+                                            // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                                            alert("分享被取消，msg=" + resp.err_msg);
+                                        },
+                                        // 分享失败了
+                                        fail : function(resp) {
+                                            // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                                            alert("分享失败，msg=" + resp.err_msg);
+                                        },
+                                        // 分享成功
+                                        confirm : function(resp) {
+                                            // 分享成功了，我们是不是可以做一些分享统计呢？
+                                            alert("分享成功，msg=" + resp.err_msg);
+                                        },
+                                        // 整个分享过程结束
+                                        all : function(resp,shareTo) {
+                                            // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                                            alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+                                        }
+                                    };*/
+                                    // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+                                    Api.shareToFriend(wxData, wxCallbacks);
+                                    // 点击分享到朋友圈，会执行下面这个代码
+                                    Api.shareToTimeline(wxData, wxCallbacks);
+                                    // 点击分享到腾讯微博，会执行下面这个代码
+                                    Api.shareToWeibo(wxData, wxCallbacks);
+                                    // iOS上，可以直接调用这个API进行分享，一句话搞定
+                                    Api.generalShare(wxData,wxCallbacks);
+                                });
+                            </script>
+                            <li><a href="javascript:;" class="share-type weixin" onclick="WeiXinShare()">微信</a></li>
+                        </ul>
+                    </div>
+
+					<div class="video-stats">
+						<div class="video-stat views-count">
+							<span class="label">观看</span>
+							<span class="data">{{video.play_count}}</span>
+						</div>
+						<a class="video-stat likes-count" ng-class="{true: 'has-liked', false: 'has-not-liked'}[melike]" ng-click="likeVideo()">
+							<span class="label">点赞</span>
+							<span class="data">{{video.like}}</span>
+						</a>
+						<a class="video-stat comments-count" href="#comments">
+							<span class="label">评论</span>
+							<span class="data">{{video.comments_count}}</span>
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="main comments-container">
+				<a name="comments"></a>
+				<h2 class="main-subheader">评论</h2>
+				<ul class="comments-list">
+					<li class="comment-item" ng-repeat="comment in comments | orderBy: 'floor'">
+						<div class="comment-header">
+							<div class="comment-avatar"><img class="avatar" ng-src="{{comment.user_avatar}}" /></div>
+							<div class="byline">
+								<div class="username">{{comment.user_name}}</div>
+								<div class="time">{{comment.reply_time}}</div>
+								<a class="comment-floor-num" name="comment-{{comment.floor}}" href="#comment-{{comment.floor}}">{{comment.floor}}</a>
+							</div>
+							<a class="comment-del-button" ng-show="comment.user_id == user_id || isAdmin" ng-click="delComment(comment.comment_id)">删除评论</a>
+						</div>
+						<div class="comment-content">{{comment.content}}</div>
+					</li>
+				</ul>
+
+				<form class="comment-form custom" id="commentForm" data-abide="ajax">
+					<textarea id="commentContent" placeholder="请输入你的评论..." required></textarea>
+					<small class="error">评论不能为空</small>
+					<button type="submit" id="commentButton">吐槽</button>
+				</form>
+
+			</div>
+		</div>
+
+	</body>
+	{% include 'partials/foot.html' %}
+</html>

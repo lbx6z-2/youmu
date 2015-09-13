@@ -1,0 +1,140 @@
+header, .main {
+    @include outer-container();
+}
+
+.masthead {
+    margin: 100px 0;
+    @include span-columns(4);
+    @include shift(4);
+
+    text-align: center;
+
+    .logo {
+        max-width: 300px;
+    }
+}
+
+.masthead-expanded {
+    padding-bottom: 91px;   // height of navbar
+}
+
+.main-subheader {
+    color: #77777f;
+    font-size: ms(2);
+    font-style: italic;
+    margin: 0;
+    margin-bottom: 50px;
+    text-align: center;
+    @include span-columns(12);
+
+    &:after {
+        border-bottom: 1px solid $blue;
+        content: "";
+        display: block;
+        height: 0;
+        margin: 0.5em auto 0;
+        width: 60px;
+    }
+}
+
+.credits {
+    @include span-columns(12);
+}
+
+.content {
+    background-color: $content-background-color;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    position: relative;
+
+    &:before {
+        content: "";
+        height: 6px;
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        background-image: linear-gradient(to left, 
+            $dark_blue,
+            $dark_blue  5%,
+            $blue       5%,
+            $blue       7%,
+            $red        7%,
+            $red        11%,
+            $yellow     11%,
+            $yellow     18%,
+            $green      18%,
+            $green      20%,
+            $dark_blue  20%,
+            $dark_blue  25%,
+            $blue       25%,
+            $blue       29%,
+            $red        29%,
+            $red        31%,
+            $yellow     31%,
+            $yellow     38%,
+            $green      38%,
+            $green      43%,
+            $dark_blue  43%,
+            $dark_blue  45%,
+            $blue       45%,
+            $blue       50%,
+            $red        50%,
+            $red        51%,
+            $yellow     51%,
+            $yellow     53%,
+            $green      53%,
+            $green      60%,
+            $dark_blue  60%,
+            $dark_blue  65%,
+            $blue       65%,
+            $blue       67%,
+            $red        67%,
+            $red        75%,
+            $yellow     75%,
+            $yellow     81%,
+            $green      81%,
+            $green      89%,
+            $dark_blue  89%,
+            $dark_blue  93%,
+            $blue       93%,
+            $blue       95%,
+            $red        95%,
+            $red
+        );
+    }
+}
+
+.video-uploader, .video-play-count, .video-likes-count, .video-media-type-video, .video-media-type-audio, .video-media-type-live {
+    &:before {
+        font-family: FontAwesome;
+        opacity: 0.7;
+        margin: 0 0.5em;
+    }
+}
+
+.video-uploader:before {
+    content: "\f007";
+    margin-left: 0;
+}
+
+.video-play-count:before {
+    content: "\f06e";
+}
+
+.video-likes-count:before {
+    content: "\f164";
+}
+
+.video-media-type-video:before {
+    content: "\f008";
+}
+
+.video-media-type-audio:before {
+    content: "\f001";
+}
+
+.video-media-type-live:before {
+    content: "\f012";
+}

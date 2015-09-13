@@ -1,0 +1,139 @@
+.masthead {
+    @include span-columns(12);
+    margin-right: 0;
+    margin: 70px 0;
+
+    .logo {
+        max-height: 228px;
+    }
+}
+
+.video-list-length {
+    font-size: ms(1);
+}
+
+.navbar {
+    .logo, .avatar {
+        display: none;
+    }
+
+    .button {
+        padding-left:  15px;
+        padding-right: 15px;
+    }
+
+    .search-area {
+        width: 60%;
+        input {
+            width: 60%;
+        }
+    }
+
+    .login-logout-area {
+        width: 40%;
+    }
+
+    .user {
+        margin: 0 $gutter / 2 0 0;
+    }
+}
+
+.video-list-item {
+    @include span-columns(12);
+    margin-right: 0;
+    position: relative;
+    margin-bottom: 10px;
+
+    .video-data-area {
+        padding: 10px 20px;
+    }
+}
+
+.byline {
+    padding: 20px 0;
+}
+
+.title {
+    padding-bottom: 20px;
+}
+
+.comment-avatar, .video-avatar, .byline, .title {
+    display: block;
+    @include span-columns(12);
+    text-align: center;
+}
+
+.comment-avatar, .video-avatar {
+    padding: 0;
+}
+
+.video-info {
+    .video-header {
+        display: block;
+        @include span-columns(12);
+    }
+
+    .video-avatar {
+        display: block;
+        @include span-columns(12);
+        text-align: center;
+        padding: 0;
+    }
+
+    .username, .time {
+        @include span-columns(6);
+        padding: 0;
+    }
+
+    .username {
+        text-align: left;
+    }
+
+    .time {
+        text-align: right;
+        margin-left: 0;
+    }
+}
+
+.comment-item {
+    .username, .time {
+        display: block;
+        @include span-columns(12);
+        padding: 0;
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+.video .share {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    text-align: left;
+
+    padding: 2em;
+
+    ul, .label, ul li {
+        display: inline-block;
+    }
+
+    li {
+        padding: 0;
+        height: auto;
+    }
+
+    .label {
+        margin: 0;
+        padding: 0;
+    }
+
+    li, .label {
+        margin-right: 20px;
+    }
+
+    .share-type {
+        &:before {
+            display: inline-block;
+        }
+    }
+}
